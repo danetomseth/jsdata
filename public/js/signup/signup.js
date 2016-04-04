@@ -13,9 +13,7 @@ app.config(function($stateProvider) {
 app.controller('SignupCtrl', function($scope, $state, User) {
   $scope.signup = {};
   $scope.sendSignup = function(data) {
-    User.create(data).then(function(resp) {
-      console.log('created user:', resp);
-      
+    User.create(data).then(function(resp) {   
       $state.go('create', {userId: resp._id});
     })
   }

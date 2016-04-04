@@ -7,9 +7,7 @@ app.config(function($stateProvider) {
 		controller: 'CreateCtrl',
 		resolve: {
 			author: function($stateParams, User) {
-				console.log('params', $stateParams);
-				return User.find($stateParams.userId)
-				 
+				return User.find($stateParams.userId);
 			}
 		} 
 		
@@ -23,9 +21,25 @@ app.controller('CreateCtrl', function($scope, author) {
 
 	$scope.preview = function() {
 		$scope.previewTrue = !$scope.previewTrue;
-	}
+	};
 	$scope.author = author;
-	console.log(author);
+	
+	$scope.newPost = {};
+	$scope.newPost.name = author.username;
+	$scope.newPost.author = author;
+
+	$scope.createNewPost = function () {
+		// console.log($scope.newPost);
+		Post.create($scope.newPost)
+		.then(function(data) {
+			console.log(data);
+		});
+	};
+
+	
+
+
+
 	/*
 
 	TODOS: 
