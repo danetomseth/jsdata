@@ -10,9 +10,15 @@ app.config(function($stateProvider) {
 })
 
 // add necessary dependencies here
-app.controller('SignupCtrl', function($scope) {
-
-
+app.controller('SignupCtrl', function($scope, $state, User) {
+  $scope.signup = {};
+  $scope.sendSignup = function(data) {
+    User.create(data).then(function(resp) {
+      console.log('created user:', resp);
+      
+      $state.go('create', {userId: resp._id});
+    })
+  }
   /*
   TODOS: 
   1 - create the signup object for ng-modelling
