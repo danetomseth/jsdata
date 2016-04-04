@@ -18,7 +18,7 @@ app.factory('Post', function(DS, $state) {
   		relations: {
   			belongTo: {
   				users: {
-  					localKey: 'author'
+  					localKey: 'author',
   					localField: '_author'
   				}
   			}

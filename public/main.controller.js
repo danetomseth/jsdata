@@ -4,12 +4,20 @@ app.config(function($stateProvider) {
 	$stateProvider.state('main', {
 		url: '/',
 		templateUrl: '/main.html',
-		controller: 'MainController'
+		controller: 'MainController',
+		resolve: {
+			users: function (User) {
+				return User.findAll();
+			},
+			posts: function (Post, users) {
+				return Post.findAll({});
+			}
+		}
 			// RESOLVE!
-	})
-})
+	});
+});
 
-app.controller('MainController', function($scope) {
+app.controller('MainController', function($scope, users, posts, Post) {
 
  	/*
 		TODOS: 
@@ -18,6 +26,12 @@ app.controller('MainController', function($scope) {
 		and retrieve the data there)
 
  	*/
-})
+
+ 	$scope.allPosts = posts;
+ 	
+
+
+
+});
 
 
