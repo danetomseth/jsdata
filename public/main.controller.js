@@ -28,6 +28,7 @@ app.controller('MainController', function($scope, users, posts, Post) {
  	*/
 
  	$scope.allPosts = posts;
+ 	console.log($scope.allPosts)
  	
 
 

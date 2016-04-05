@@ -4,15 +4,45 @@
 
 	<div class="postTitle">
     <!-- display the post title -->
-		<h2></h2>
+		<h2>{{userPost.title}} <small>{{userPost._author.username}}</small></h2>
+		
     <!-- add functionality that makes this Edit button work -->
-		<button type="button" class="btn btn-primary">Edit</button>
+		
 	</div>
 
   <!-- display the user's name by accessing the user object embedded in the post -->
 
   <!-- display the post body -->
-	<p></p>
+  	
+	<p ng-hide="editing">{{userPost.body}}</p>
+
+	<button ng-hide="editing" type="button" class="btn btn-primary" ng-click="editPost()">Edit</button>
+
+	<div ng-show="editing">
+		<form ng-submit="editCurrentPost(userPost)" ng-model="userPost">
+			<div class="form-group">
+				<label>Title</label>
+				<input type="text" class="form-control" ng-model="userPost.title" required/>
+			</div>
+
+			<div class="form-group">
+				<label>Author</label>
+				<input type="text" class="form-control" placeholder="Author" ng-model="userPost._author.username" required />
+			</div>
+
+			<div class="form-group">
+				<label>Body</label>
+				<textarea type="text" class="form-control" placeholder="What are you trying to say?" ng-model="userPost.body" required /></textarea>
+			</div>
+
+			<div class="form-group">
+			<input type="submit"> 
+			<!-- <input type="button" value="Preview" ng-click="preview()"> -->
+			</div>
+		</form>
+	</div>
+
+
 
 	<a ui-sref="main">Back to All Posts</a>
 

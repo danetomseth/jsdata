@@ -35,6 +35,21 @@ module.exports = {
       res.status(204).end()
     })
     .then(null, next)
+  },
+  update: function(req, res, next) {
+    Post.findById(req.body._id).exec()
+    .then(function(post) {
+      return post
+    }).then(function(updatedPost) {
+      updatedPost.title = req.body.title;
+      updatedPost.body = req.body.body;
+      updatedPost.save().then(function(err, savedPost){
+        console.log('saved post', savedPost);
+        res.json(updatedPost)
+      })
+
+    })
+    .then(null, next)
   }
 
 }

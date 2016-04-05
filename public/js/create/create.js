@@ -15,7 +15,7 @@ app.config(function($stateProvider) {
 })
 
 // add necessary dependencies here 
-app.controller('CreateCtrl', function($scope, author) {
+app.controller('CreateCtrl', function($scope, author, Post, $state) {
 
 	$scope.previewTrue = false;
 
@@ -25,19 +25,19 @@ app.controller('CreateCtrl', function($scope, author) {
 	$scope.author = author;
 	
 	$scope.newPost = {};
-	$scope.newPost.name = author.username;
+	$scope.newPost.username = author.username;
 	$scope.newPost.author = author;
 
 	$scope.createNewPost = function () {
 		// console.log($scope.newPost);
 		Post.create($scope.newPost)
 		.then(function(data) {
-			console.log(data);
+			$state.go('main');
 		});
 	};
 
 	
-
+	
 
 
 	/*
